@@ -42,14 +42,5 @@ function modhex.isModhex(s)
   if not (#s % 2 == 0) then return false end
   return true
 end
-function modhex.isValidOTP(s)
-  if not (#s == 44) then
-    return false,"Invaild length"
-  end
-  if not modhex.isModhex(s) then
-    return false,"Invaild modhex"
-  end
-  return true
-end
 
 return modhex
