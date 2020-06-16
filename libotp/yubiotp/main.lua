@@ -3,6 +3,7 @@
 -- https://github.com/UpsilonDev/libotp
 
 local modhex = require("libotp.yubiotp.modhex")
+local lookup = require("libotp.utils.lookup")
 local rand = require("libotp.utils.rand")
 
 local yubiotp = {}
@@ -16,24 +17,9 @@ local function splitResponse(r)
 end
 local function yubicloud(id,otp,nonce)
   -- Construct HTTP request and do the mario
-  local endpoint = {
-    "api.yubico.com",
-    "api2.yubico.com",
-    "api3.yubico.com",
-    "api4.yubico.com",
-    "api5.yubico.com"
-  }
-  local err = {
-    ["BAD_OTP"] = -10,
-    ["REPLAYED_OTP"] = -11,
-    ["BAD_SIGNATURE"] = -12,
-    ["MISSING_PARAMETER"] = -13,
-    ["NO_SUCH_CLIENT"] = -14,
-    ["OPERATION_NOT_ALLOWED"] = -15,
-    ["BACKEND_ERROR"] = -16,
-    ["NOT_ENOUGH_ANSWERS"] = -17,
-    ["REPLAYED_REQUEST"] = -18
-  }
+  local endpoint = lookup.yubicloud
+  local err = lookup.err.yubicloud
+
   local fmt = "https://%s/wsapi/2.0/verify?otp=%s&nonce=%s&id=%s&timestamp=1"
   local h = http.get(string.format(
     fmt,endpoint[math.random(#endpoint)],
@@ -81,6 +67,9 @@ function yubiotp.isValidOTP(s)
     return false,-4
   end
   return true
+end
+function yubiotp.getYubikeyID(t)
+  return modhex.decodeDecimal(t:sub(1,12))
 end
 
 return yubiotp
