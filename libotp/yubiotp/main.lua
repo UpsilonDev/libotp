@@ -23,7 +23,7 @@ local function yubicloud(id,otp,nonce)
     "api4.yubico.com",
     "api5.yubico.com"
   }
-  err = {
+  local err = {
     ["BAD_OTP"] = -10,
     ["REPLAYED_OTP"] = -11,
     ["BAD_SIGNATURE"] = -12,
