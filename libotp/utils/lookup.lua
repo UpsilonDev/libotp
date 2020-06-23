@@ -4,6 +4,7 @@
 
 local lookup = {
   ["err"] = {},
+  ["mode"] = {},
   ["yubicloud"] = {}
 }
 
@@ -29,8 +30,8 @@ lookup.err.yubicloud = {
   ["REPLAYED_REQUEST"] = -18
 }
 
--- libotp error messages
-lookup.err.libotp = {
+-- YubiOTP error messages
+lookup.err.yubiotp = {
     [0] = "OK",
    [-1] = "HTTP error (generic)",
    [-2] = "Non-200 HTTP status",
@@ -51,6 +52,31 @@ lookup.err.libotp = {
   [-17] = "YubiCloud: Not enough answers",
   [-18] = "YubiCloud: Replayed request",
   [-20] = "Unknown YubiCloud error"
+}
+
+-- Feature bits lookup
+lookup.mode.fbits = {
+  [1] = "Strict mode",
+  [2] = "Enhanced strict mode",
+  [3] = "Check YubiCloud signature",
+  [4] = "Sign validation request",
+  [5] = "Check CRC in OTP",
+  [6] = "Parallel HTTP requests",
+  [7] = "Reserved",
+  [8] = "Reserved"
+}
+
+-- Hexadecimal to binary lookup table
+-- This is only temporary solution. Just kidding... unless?
+lookup.mode.bin = {
+  ["0"] = "0000",["1"] = "0001",
+  ["2"] = "0010",["3"] = "0011",
+  ["4"] = "0100",["5"] = "0101",
+  ["6"] = "0110",["7"] = "0111",
+  ["8"] = "1000",["9"] = "1001",
+  ["a"] = "1010",["b"] = "1011",
+  ["c"] = "1100",["d"] = "1101",
+  ["e"] = "1110",["f"] = "1111"
 }
 
 return lookup
