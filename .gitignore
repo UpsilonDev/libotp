@@ -1,0 +1,7 @@
+# Don't include Howl
+Howl
+Howl.lua
+Howl.min.lua
+
+# Build artifacts too
+build/
