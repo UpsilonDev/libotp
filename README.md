@@ -16,7 +16,7 @@ TOTP/HOTP (soon™) and Yubico OTP library for ComputerCraft
 - [ ] Implement HOTP & TOTP (RFC [4226](https://tools.ietf.org/html/rfc4226), [6238](https://tools.ietf.org/html/rfc6238))
 - - [ ] The OTP algorithm itself :shipit:
 - [ ] Documentation
-- [ ] Howl build system
+- [x] Howl build system
 
 ## Documentation
 Coming soon™
