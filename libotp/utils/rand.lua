@@ -2,7 +2,7 @@
 -- Part of the libotp library for ComputerCraft
 -- https://github.com/UpsilonDev/libotp
 
-local csprng = require("libotp.utils.csprng")
+local csprng = require("libotp.crypto.csprng")
 
 local rand = {}
 
