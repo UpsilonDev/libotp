@@ -3,8 +3,10 @@
 -- https://github.com/UpsilonDev/libotp
 
 local lookup = {
+  ["mt"] = {},
   ["err"] = {},
   ["mode"] = {},
+  ["headers"] = {},
   ["yubicloud"] = {}
 }
 
@@ -66,17 +68,21 @@ lookup.mode.fbits = {
   [8] = "Reserved"
 }
 
--- Hexadecimal to binary lookup table
--- This is only temporary solution. Just kidding... unless?
-lookup.mode.bin = {
-  ["0"] = "0000",["1"] = "0001",
-  ["2"] = "0010",["3"] = "0011",
-  ["4"] = "0100",["5"] = "0101",
-  ["6"] = "0110",["7"] = "0111",
-  ["8"] = "1000",["9"] = "1001",
-  ["a"] = "1010",["b"] = "1011",
-  ["c"] = "1100",["d"] = "1101",
-  ["e"] = "1110",["f"] = "1111"
+-- HTTP headers for YubiCloud requests
+lookup.headers = {
+  ["User-Agent"] = "libotp/alpha (+https://git.io/JJem7)",
+  ["X-Clacks-Overhead"] = "GNU Terry Pratchett"
+}
+
+-- Metatable for getting a key/value table length
+lookup.mt.tlen = {
+  __len = function(t)
+    local c = 0
+    for i in pairs(t) do
+      c = c+1
+    end
+    return c
+  end
 }
 
 return lookup
