@@ -253,8 +253,13 @@ function csprng.random(min, max)
 end
 
 -- Quick hack: enforce range by calling .random() x times until we get the desirable result.
--- As far as I'm concerned, this doesn't seem insecure since it's generating new numbers repeatedly from stratch. You could reseed ISAAC after each round, but that's terribly inefficent.
+-- As far as I'm concerned, this doesn't seem insecure since it's generating new numbers repeatedly from stratch.
+-- You could reseed ISAAC after each round, but that's terribly inefficent.
 function csprng.randomRange(min, max)
+	if not max then
+		max = min
+		min = 1
+	end
 	local n = 0
 	repeat
 		n = csprng.random(min, max)

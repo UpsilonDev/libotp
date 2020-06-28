@@ -6,6 +6,7 @@ local lookup = {
   ["mt"] = {},
   ["err"] = {},
   ["mode"] = {},
+  ["timeout"] = {},
   ["headers"] = {},
   ["yubicloud"] = {}
 }
@@ -74,15 +75,7 @@ lookup.headers = {
   ["X-Clacks-Overhead"] = "GNU Terry Pratchett"
 }
 
--- Metatable for getting a key/value table length
-lookup.mt.tlen = {
-  __len = function(t)
-    local c = 0
-    for i in pairs(t) do
-      c = c+1
-    end
-    return c
-  end
-}
+-- Hardcoded, but adjustable timeouts
+lookup.timeout.http = 5 -- Parallel HTTP requests for YubiCloud
 
 return lookup

@@ -14,9 +14,9 @@ TOTP/HOTP (soon™) and Yubico OTP library for ComputerCraft
   - [x] Algorithm
   - [x] ModHex implementation (in Pure Lua)
   - [ ] CRC checksum validation
-  - [ ] Request signing and validation
+  - [x] Request signing and validation
   - [ ] Strict mode for validating OTPs client-side
-  - [ ] Parallel HTTP requests (toggleable)
+  - [x] Parallel HTTP requests (toggleable)
 - [ ] Implement HOTP & TOTP (RFC [4226](https://tools.ietf.org/html/rfc4226), [6238](https://tools.ietf.org/html/rfc6238))
   - [ ] The OTP algorithm itself :shipit:
   - [ ] Base32 seed input and generation (required)
