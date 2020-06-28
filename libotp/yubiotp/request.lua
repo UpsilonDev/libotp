@@ -65,10 +65,13 @@ function request.send(par,otp,nonce,id,key)
     h.close()
   else
     -- Send parallel requests
+    local url = {}
     local ep = tblutil.copy(lookup.yubicloud)
     local pa = buildParam(pli,payload)
     for k,v in pairs(tblutil.shuffle(ep)) do
-      http.request(buildURL(v,pa),_,lookup.headers)
+      local u = buildURL(v,pa)
+      url[u] = true
+      http.request(u,_,lookup.headers)
     end
 
     local success,failure,trip = {},{},false
@@ -76,12 +79,12 @@ function request.send(par,otp,nonce,id,key)
     -- Catch requests and wait if loop timeouts
     repeat
       local e = {os.pullEvent()}
-      if e[1] == "http_success" then
+      if (e[1] == "http_success") and (url[e[2]]) then
         table.insert(success,{
           ["url"] = e[2],
           ["handle"] = e[3]
         })
-      elseif e[1] == "http_failure" then
+      elseif (e[1] == "http_failure") and (url[e[2]]) then
         table.insert(failure,{
           ["url"] = e[2],
           ["error"] = e[3]
