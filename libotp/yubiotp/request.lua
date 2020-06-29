@@ -105,7 +105,4 @@ function request.send(par,otp,nonce,id,key)
   return true,d
 end
 
-request.buildParam = buildParam
-request.splitResponse = splitResponse
-
 return request
