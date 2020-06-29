@@ -16,10 +16,6 @@ function tblutil.shuffle(t)
   end
   return t
 end
--- Ultra simple table copy
-function tblutil.copy(t)
-  return {unpack(t)}
-end
 -- Convenience function for sortable K/V pairs
 function tblutil.addToIndex(kvp,i,t)
   for k,v in pairs(kvp) do

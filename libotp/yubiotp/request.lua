@@ -66,7 +66,7 @@ function request.send(par,otp,nonce,id,key)
   else
     -- Send multiple requests
     local url = {}
-    local ep = tblutil.copy(lookup.yubicloud)
+    local ep = {unpack(lookup.yubicloud)}
     local pa = buildParam(pli,payload)
     for k,v in pairs(tblutil.shuffle(ep)) do
       local u = buildURL(v,pa)
@@ -101,7 +101,7 @@ function request.send(par,otp,nonce,id,key)
     for _,v in pairs(success) do v["handle"].close() end
   end
   -- Our job is finished here, hand control back to main
-  -- Validation takes place in main.lua yubicloud()
+  -- Validation takes place in main.lua
   return true,d
 end
 
