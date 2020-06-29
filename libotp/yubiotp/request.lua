@@ -59,12 +59,12 @@ function request.send(par,otp,nonce,id,key)
       lookup.headers
     )
 
-    if not h then return false end
+    if not h then return false,-1 end
     d = splitResponse(h.readAll())
-    if not (h.getResponseCode() == 200) then h.close() return false,d end
+    if not (h.getResponseCode() == 200) then h.close() return false,-2,d end
     h.close()
   else
-    -- Send parallel requests
+    -- Send multiple requests
     local url = {}
     local ep = tblutil.copy(lookup.yubicloud)
     local pa = buildParam(pli,payload)
@@ -95,8 +95,8 @@ function request.send(par,otp,nonce,id,key)
     until (#success == 5 or trip)
 
     -- Use first response and discard the rest according to Yubico specs
-    -- TODO: Handle (multiple) HTTP errors gracefully
-    if not (#success >= 1) then return false end
+    -- TODO: Handle (multiple) HTTP errors gracefully and pass them on
+    if not (#success >= 1) then return false,-1 end
     d = splitResponse(success[1]["handle"].readAll())
     for _,v in pairs(success) do v["handle"].close() end
   end

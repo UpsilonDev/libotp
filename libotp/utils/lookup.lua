@@ -22,39 +22,41 @@ lookup.yubicloud = {
 
 -- YubiCloud error messages
 lookup.err.yubicloud = {
-  ["BAD_OTP"] = -10,
-  ["REPLAYED_OTP"] = -11,
-  ["BAD_SIGNATURE"] = -12,
-  ["MISSING_PARAMETER"] = -13,
-  ["NO_SUCH_CLIENT"] = -14,
-  ["OPERATION_NOT_ALLOWED"] = -15,
-  ["BACKEND_ERROR"] = -16,
-  ["NOT_ENOUGH_ANSWERS"] = -17,
-  ["REPLAYED_REQUEST"] = -18
+  ["BAD_OTP"] = -20,
+  ["REPLAYED_OTP"] = -21,
+  ["BAD_SIGNATURE"] = -22,
+  ["MISSING_PARAMETER"] = -23,
+  ["NO_SUCH_CLIENT"] = -24,
+  ["OPERATION_NOT_ALLOWED"] = -25,
+  ["BACKEND_ERROR"] = -26,
+  ["NOT_ENOUGH_ANSWERS"] = -27,
+  ["REPLAYED_REQUEST"] = -28
 }
 
 -- YubiOTP error messages
 lookup.err.yubiotp = {
     [0] = "OK",
-   [-1] = "HTTP error (generic)",
+   [-1] = "No response",
    [-2] = "Non-200 HTTP status",
-   [-3] = "Invalid OTP: length",
-   [-4] = "Invalid OTP: modhex",
-   [-5] = "Invalid OTP: CRC",
-   [-6] = "OTP mismatch from response",
-   [-7] = "Nonce mismatch from response",
-   [-8] = "Signature mismatch",
-   [-9] = "Fatal exception",
-  [-10] = "YubiCloud: Bad OTP",
-  [-11] = "YubiCloud: Replayed OTP",
-  [-12] = "YubiCloud: Bad signature",
-  [-13] = "YubiCloud: Missing parameter",
-  [-14] = "YubiCloud: No such client",
-  [-15] = "YubiCloud: Operation not allowed",
-  [-16] = "YubiCloud: Backend error",
-  [-17] = "YubiCloud: Not enough answers",
-  [-18] = "YubiCloud: Replayed request",
-  [-20] = "Unknown YubiCloud error"
+   [-3] = "URL not in whitelist",
+   [-4] = "Multiple responses missing",
+   [-5] = "Invalid OTP length",
+   [-6] = "Invalid OTP modhex",
+   [-7] = "OTP CRC mismatch",
+   [-8] = "OTP mismatch from response",
+   [-9] = "Nonce mismatch from response",
+  [-10] = "Fatal exception",
+  [-11] = "Response signature mismatch",
+  [-20] = "YubiCloud: Bad OTP",
+  [-21] = "YubiCloud: Replayed OTP",
+  [-22] = "YubiCloud: Bad signature",
+  [-23] = "YubiCloud: Missing parameter",
+  [-24] = "YubiCloud: No such client",
+  [-25] = "YubiCloud: Operation not allowed",
+  [-26] = "YubiCloud: Backend error",
+  [-27] = "YubiCloud: Not enough answers",
+  [-28] = "YubiCloud: Replayed request",
+  [-30] = "Unknown YubiCloud error"
 }
 
 -- Feature bits lookup
