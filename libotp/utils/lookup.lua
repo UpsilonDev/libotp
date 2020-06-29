@@ -3,10 +3,8 @@
 -- https://github.com/UpsilonDev/libotp
 
 local lookup = {
-  ["mt"] = {},
   ["err"] = {},
   ["mode"] = {},
-  ["timeout"] = {},
   ["headers"] = {},
   ["yubicloud"] = {}
 }
@@ -69,7 +67,7 @@ lookup.mode.yubiotp = {
   false, -- Check CRC in OTP
   false, -- Parallel HTTP requests
   false, -- Reserved
-  false, -- Reserved
+  false  -- Reserved
 }
 
 -- HTTP headers for YubiCloud requests

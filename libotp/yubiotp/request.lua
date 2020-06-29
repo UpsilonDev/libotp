@@ -102,7 +102,7 @@ function request.send(par,otp,id,key)
   end
   -- Our job is finished here, hand control back to main
   -- Validation takes place in main.lua
-  return true,d
+  return true,d,payload
 end
 
 return request
