@@ -47,6 +47,7 @@ lookup.err.yubiotp = {
    [-9] = "Nonce mismatch from response",
   [-10] = "Fatal exception",
   [-11] = "Response signature mismatch",
+  [-12] = "Invalid hexamode given",
   [-20] = "YubiCloud: Bad OTP",
   [-21] = "YubiCloud: Replayed OTP",
   [-22] = "YubiCloud: Bad signature",
@@ -59,16 +60,16 @@ lookup.err.yubiotp = {
   [-30] = "Unknown YubiCloud error"
 }
 
--- Feature bits lookup
-lookup.mode.fbits = {
-  [1] = "Strict mode",
-  [2] = "Enhanced strict mode",
-  [3] = "Check YubiCloud signature",
-  [4] = "Sign validation request",
-  [5] = "Check CRC in OTP",
-  [6] = "Parallel HTTP requests",
-  [7] = "Reserved",
-  [8] = "Reserved"
+-- Default hexamode bit for YubiOTP
+lookup.mode.yubiotp = {
+  false, -- Strict mode
+  false, -- Enhanced strict mode
+  false, -- Check YubiCloud signature
+  false, -- Sign validation request
+  false, -- Check CRC in OTP
+  false, -- Parallel HTTP requests
+  false, -- Reserved
+  false, -- Reserved
 }
 
 -- HTTP headers for YubiCloud requests
@@ -76,8 +77,5 @@ lookup.headers = {
   ["User-Agent"] = "libotp/alpha (+https://git.io/JJem7)",
   ["X-Clacks-Overhead"] = "GNU Terry Pratchett"
 }
-
--- Hardcoded, but adjustable timeouts
-lookup.timeout.http = 5 -- Parallel HTTP requests for YubiCloud
 
 return lookup

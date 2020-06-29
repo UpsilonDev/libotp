@@ -30,12 +30,12 @@ end
 local function buildURL(ep,pa)
   return string.format("https://%s/wsapi/2.0/verify?%s",ep,pa)
 end
-function request.send(par,otp,nonce,id,key)
+function request.send(par,otp,id,key)
   -- Assemble payload
   local pli,payload = {},{}
   tblutil.addToIndex({
     ["otp"] = otp,
-    ["nonce"] = nonce,
+    ["nonce"] = rand.getRandomString(16),
     ["id"] = id,
     ["timestamp"] = "1"
   },pli,payload)
@@ -75,7 +75,7 @@ function request.send(par,otp,nonce,id,key)
     end
 
     local success,failure,trip = {},{},false
-    local timer = os.startTimer(lookup.timeout.http)
+    local timer = os.startTimer(5)
     -- Catch requests and wait if loop timeouts
     repeat
       local e = {os.pullEvent()}
