@@ -2,62 +2,61 @@
 -- Part of the libotp library for ComputerCraft
 -- https://github.com/UpsilonDev/libotp
 
-local modhex = require("libotp.yubiotp.modhex")
+local mode = require("libotp.utils.mode")
 local lookup = require("libotp.utils.lookup")
-local rand = require("libotp.utils.rand")
+local modhex = require("libotp.yubiotp.modhex")
+local request = require("libotp.yubiotp.request")
 
 local yubiotp = {}
 
-local function splitResponse(r)
-  local resp = {}
-  for k,v in r:gmatch("(%w+)=([%w%p_]+)") do
-    resp[k] = v
-  end
-  return resp
-end
-local function yubicloud(id,otp,nonce)
-  -- Construct HTTP request and do the mario
-  local endpoint = lookup.yubicloud
-  local err = lookup.err.yubicloud
-
-  local fmt = "https://%s/wsapi/2.0/verify?otp=%s&nonce=%s&id=%s&timestamp=1"
-  local h = http.get(string.format(
-    fmt,endpoint[math.random(#endpoint)],
-    otp,nonce,id
-  ))
-  if not h then return false,-1 end
-  if not (h.getResponseCode() == 200) then h.close() return false,-2 end
-  local d = splitResponse(h.readAll())
-  h.close()
-
-  -- Basic request validation
-  if not d.otp == otp then
-    return false,-6,d
-  elseif not d.nonce == nonce then
-    return false,-7,d
-  end
-
-  -- Check YubiCloud status response
-  if d.status == "OK" then
-    return true,0,d
+function yubiotp.validate(otp,id,key,opt)
+  -- Hexamode handling
+  local o = {}
+  if opt then
+    o = mode.getMode(opt,2)
+    if not o then return false,-12 end
   else
-    return false,(err[d.status] or -20),d
+    o = lookup.mode.yubiotp
   end
 
-  return false,-9 -- This should never happen
-end
-function yubiotp.validate(otp,id)
-  local cs,cc = yubiotp.isValidOTP(otp)
-  if not cs then return false,cc end
+  -- Input validation
+  if not otp then return false,-13 end
+  if not id then return false,-13 end
+  if not o[4] then key = nil end
+  --if o[1] then
+  --  local cs,cc = yubiotp.isValidOTP(otp,o[2],o[5])
+  --  if not cs then return false,cc end
+  --end
 
-  local nonce = rand.getRandomString(16)
-  local res,ec,rep = yubicloud(id,otp,nonce)
+  -- Do the mario
+  local r,resp,resq,vrs = request.send(otp,id,key,o[6],o[3])
 
-  if res then
-    return true,0,rep
+  if r then
+    local err = lookup.err.yubicloud
+
+    if resp.status == "OK" then
+      -- Basic request validation
+      if not (resp.otp == resq.otp) then
+        return false,-8,resp
+      elseif not (resp.nonce == resq.nonce) then
+        return false,-9,resp
+      end
+
+      -- Signature validation
+      if o[3] and key then
+        if not vrs then return false,-11,resp end
+      end
+
+      return true,0,resp
+    else
+      return false,(err[resp.status] or -30),resp
+    end
   else
-    return false,ec,rep
+    -- Pass on the error
+    return false,resp,resq
   end
+
+  return false,-10 -- This should never happen
 end
 function yubiotp.isValidOTP(s)
   -- TODO: Implement CRC checksum validation

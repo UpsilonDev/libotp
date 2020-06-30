@@ -46,6 +46,7 @@ lookup.err.yubiotp = {
   [-10] = "Fatal exception",
   [-11] = "Response signature mismatch",
   [-12] = "Invalid hexamode given",
+  [-13] = "No OTP or client ID given",
   [-20] = "YubiCloud: Bad OTP",
   [-21] = "YubiCloud: Replayed OTP",
   [-22] = "YubiCloud: Bad signature",
@@ -62,10 +63,10 @@ lookup.err.yubiotp = {
 lookup.mode.yubiotp = {
   false, -- Strict mode
   false, -- Enhanced strict mode
-  false, -- Check YubiCloud signature
-  false, -- Sign validation request
-  false, -- Check CRC in OTP
-  false, -- Parallel HTTP requests
+  true,  -- Check YubiCloud signature
+  true,  -- Sign validation request
+  true,  -- Check CRC in OTP
+  true,  -- Parallel HTTP requests
   false, -- Reserved
   false  -- Reserved
 }
