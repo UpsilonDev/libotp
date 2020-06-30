@@ -16,6 +16,14 @@ function tblutil.shuffle(t)
   end
   return t
 end
+-- Copy K/V tables
+function tblutil.copy(t)
+  local r = {}
+  for k,v in pairs(t) do
+    r[k] = v
+  end
+  return r
+end
 -- Convenience function for sortable K/V pairs
 function tblutil.addToIndex(kvp,i,t)
   for k,v in pairs(kvp) do

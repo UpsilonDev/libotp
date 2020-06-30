@@ -30,7 +30,7 @@ end
 local function buildURL(ep,pa)
   return string.format("https://%s/wsapi/2.0/verify?%s",ep,pa)
 end
-function request.send(par,otp,id,key)
+function request.send(otp,id,key,par,vrs)
   -- Assemble payload
   local pli,payload = {},{}
   tblutil.addToIndex({
@@ -100,9 +100,17 @@ function request.send(par,otp,id,key)
     d = splitResponse(success[1]["handle"].readAll())
     for _,v in pairs(success) do v["handle"].close() end
   end
-  -- Our job is finished here, hand control back to main
-  -- Validation takes place in main.lua
-  return true,d,payload
+
+  -- Validate response signature
+  if vrs and key then
+    local p,i,t = tblutil.copy(d),{},{}
+    p["h"] = nil
+    tblutil.addToIndex(p,i,t)
+    table.sort(i)
+    return true,d,payload,signature.validate(buildParam(i,t),d["h"],key)
+  else
+    return true,d,payload
+  end
 end
 
 return request
