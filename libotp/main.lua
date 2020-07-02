@@ -3,7 +3,7 @@
 -- https://github.com/UpsilonDev/libotp
 
 local libotp = {
-  ["lu"] = {}
+  ["err"] = {}
 }
 
 libotp.VERSION = "alpha"
@@ -12,12 +12,11 @@ libotp.VERSION = "alpha"
 libotp.yubiotp = require("libotp.yubiotp.main")
 
 -- Helper functions
-libotp.modhex = require("libotp.yubiotp.modhex")
 libotp.rand = require("libotp.utils.rand")
+libotp.modhex = require("libotp.yubiotp.modhex")
 
 -- Selected lookup tables 
 local lookup = require("libotp.utils.lookup")
-libotp.lu.err = lookup.err.yubiotp
-libotp.lu.fbits = lookup.mode.fbits
+libotp.err.yubiotp = lookup.err.yubiotp
 
 return libotp
