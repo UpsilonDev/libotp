@@ -5,7 +5,8 @@
 local rand = require("libotp.utils.rand")
 local lookup = require("libotp.utils.lookup")
 local tblutil = require("libotp.utils.tables")
-local signature = require("libotp.yubiotp.signature")
+local base = require("libotp.utils.base")
+local sha1 = require("libotp.crypto.sha1")
 
 local request = {}
 
@@ -30,6 +31,18 @@ end
 local function buildURL(ep,pa)
   return string.format("https://%s/wsapi/2.0/verify?%s",ep,pa)
 end
+local function signRequest(data,key)
+  return base.to_base64(base.from_hex(
+    sha1.hmac(data,base.from_base64(key)):toHex()
+  ))
+end
+local function validateRequest(data,rsig,key)
+  if not (signRequest(data,key) == rsig) then
+    return false
+  end
+  return true
+end
+
 function request.send(otp,id,key,par,vrs)
   -- Assemble payload
   local pli,payload = {},{}
@@ -44,7 +57,7 @@ function request.send(otp,id,key,par,vrs)
   -- Sign request if key was given
   if key then
     tblutil.addToIndex({
-      ["h"] = signature.sign(buildParam(pli,payload),key)
+      ["h"] = signRequest(buildParam(pli,payload),key)
     },pli,payload)
   end
 
@@ -107,7 +120,7 @@ function request.send(otp,id,key,par,vrs)
     p["h"] = nil
     tblutil.addToIndex(p,i,t)
     table.sort(i)
-    return true,d,payload,signature.validate(buildParam(i,t),d["h"],key)
+    return true,d,payload,validateRequest(buildParam(i,t),d["h"],key)
   else
     return true,d,payload
   end
