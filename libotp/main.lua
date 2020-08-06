@@ -10,12 +10,13 @@ libotp.VERSION = "alpha"
 
 -- Core functions
 libotp.yubiotp = require("libotp.yubiotp.main")
+libotp.hotp = require("libotp.oath.hotp")
 
 -- Helper functions
 libotp.rand = require("libotp.utils.rand")
 libotp.modhex = require("libotp.yubiotp.modhex")
 
--- Selected lookup tables 
+-- Selected lookup tables
 local lookup = require("libotp.utils.lookup")
 libotp.err.yubiotp = lookup.err.yubiotp
 
