@@ -19,10 +19,17 @@ function common.truncate(HS)
   )
 end
 function common.counter(C)
-  -- Very naive 8-bit counter that somehow works
-  local t = {0,0,0,0,0,0,0}
-  table.insert(t,C)
-  return t
+  local r,i = {0,0,0,0,0,0,0,0},8
+  while i > 1 and C > 0 do
+    r[i] = C % 0x100
+    C = math.floor(C/0x100)
+    i = i - 1
+  end
+  return r
+end
+function common.process(O,L)
+  local fms = "%0"..L.."d"
+  return string.format(fms,O % 10^L)
 end
 
 return common
