@@ -11,6 +11,7 @@ libotp.VERSION = "alpha"
 -- Core functions
 libotp.yubiotp = require("libotp.yubiotp.main")
 libotp.hotp = require("libotp.oath.hotp")
+libotp.totp = require("libotp.oath.totp")
 
 -- Helper functions
 libotp.rand = require("libotp.utils.rand")
