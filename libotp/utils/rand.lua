@@ -31,7 +31,7 @@ end
 -- Generate random OATH TOTP/HOTP seed
 function rand.getRandomSeed()
   local r = {{33,47},{48,57},{58,64},{65,90},{91,96},{97,122}}
-  return randStr(10,r)
+  return base.to_base32(randStr(10,r))
 end
 
 return rand
