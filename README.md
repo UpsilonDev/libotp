@@ -19,10 +19,9 @@ TOTP/HOTP (soon™) and Yubico OTP library for ComputerCraft
   - [x] Parallel HTTP requests (toggleable)
 - [x] Implement HOTP & TOTP (RFC [4226](https://tools.ietf.org/html/rfc4226), [6238](https://tools.ietf.org/html/rfc6238))
   - [x] The OTP algorithm itself :shipit:
-  - [ ] Base32 seed input and generation (required)
+  - [ ] Base32 seed generation
   - [x] SHA-1 (required for basic functionality)
-  - [ ] SHA-256/512 futureproofing
-  - [ ] ~~7-10 digit codes~~
+  - [x] 7-10 digit codes
   - [ ] Skew/look-ahead
 - [ ] Documentation
 - [x] Howl build system
@@ -35,5 +34,5 @@ Coming soon™
 
 - KillaVanilla/Tatantyler for their [CSPRNG](https://pastebin.com/D1th4Htw) library
 - SquidDev for their [Howl build system](https://github.com/SquidDev-CC/Howl)
-- Anavrins for their [SHA-1](https://pastebin.com/SfL7vxP3) and [SHA-256](https://pastebin.com/6UV4qfNF) library
+- Anavrins for their [SHA-1](https://pastebin.com/SfL7vxP3) library
 - aiq for their [BaseXX](https://github.com/aiq/basexx) library
