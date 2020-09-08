@@ -17,7 +17,7 @@ TOTP/HOTP (soon™) and Yubico OTP library for ComputerCraft
   - [x] Request signing and validation
   - [ ] Strict mode for validating OTPs client-side
   - [x] Parallel HTTP requests (toggleable)
-- [ ] Implement HOTP & TOTP (RFC [4226](https://tools.ietf.org/html/rfc4226), [6238](https://tools.ietf.org/html/rfc6238))
+- [x] Implement HOTP & TOTP (RFC [4226](https://tools.ietf.org/html/rfc4226), [6238](https://tools.ietf.org/html/rfc6238))
   - [x] The OTP algorithm itself :shipit:
   - [ ] Base32 seed input and generation (required)
   - [x] SHA-1 (required for basic functionality)
