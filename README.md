@@ -19,7 +19,7 @@ TOTP/HOTP (soon™) and Yubico OTP library for ComputerCraft
   - [x] Parallel HTTP requests (toggleable)
 - [x] Implement HOTP & TOTP (RFC [4226](https://tools.ietf.org/html/rfc4226), [6238](https://tools.ietf.org/html/rfc6238))
   - [x] The OTP algorithm itself :shipit:
-  - [ ] Base32 seed generation
+  - [x] Base32 seed generation
   - [x] SHA-1 (required for basic functionality)
   - [x] 7-10 digit codes
   - [ ] Skew/look-ahead
