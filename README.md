@@ -22,7 +22,7 @@ TOTP/HOTP (soon™) and Yubico OTP library for ComputerCraft
   - [x] Base32 seed generation
   - [x] SHA-1 (required for basic functionality)
   - [x] 7-10 digit codes
-  - [ ] Skew/look-ahead
+  - [x] Skew/look-ahead
 - [ ] Documentation
 - [x] Howl build system
 
