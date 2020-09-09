@@ -2,7 +2,7 @@ Tasks:clean()
 
 Tasks:minify "minify" {
   input = "build/libotp.lua",
-  output= "build/libotp.min.lua"
+  output = "build/libotp.min.lua"
 }
 
 Tasks:require "main" {
