@@ -19,11 +19,10 @@ function hotp.check(otp,c,s,l,o)
       p[gen(st+i,s,l)] = true
     end
     if p[otp] then return true end
-    return false
   else
     if otp == gen(c,s,l) then return true end
-    return false
   end
+  return false
 end
 
 return hotp

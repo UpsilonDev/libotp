@@ -21,11 +21,10 @@ function totp.check(otp,s,d,l,o)
       p[gen(st+i,s,l)] = true
     end
     if p[otp] then return true end
-    return false
   else
     if otp == gen(e,s,l) then return true end
-    return false
   end
+  return false
 end
 
 return totp
