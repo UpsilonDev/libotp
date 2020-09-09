@@ -6,7 +6,7 @@ local libotp = {
   ["err"] = {}
 }
 
-libotp.VERSION = "alpha"
+libotp.VERSION = "1.0.0"
 
 -- Core functions
 libotp.yubiotp = require("libotp.yubiotp.main")
