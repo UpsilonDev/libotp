@@ -36,7 +36,7 @@ end
 
 local function ignore_set( str, set )
    if set then
-      str = str:gsub( "["..set.."]", "" )
+      str = str:gsub( "[" .. set .. "]", "" )
    end
    return str
 end
@@ -76,7 +76,7 @@ function basexx.to_bit( str )
    return ( str:gsub( '.', function ( c )
                local byte = string.byte( c )
                local bits = {}
-               for _ = 1,8 do
+               for _ = 1, 8 do
                   table.insert( bits, byte % 2 )
                   byte = math.floor( byte / 2 )
                end
@@ -100,7 +100,7 @@ end
 
 function basexx.to_hex( str )
    return ( str:gsub( '.', function ( c )
-               return string.format('%02X', string.byte( c ) )
+               return string.format( '%02X', string.byte( c ) )
             end ) )
 end
 
@@ -131,8 +131,8 @@ local function to_basexx( str, alphabet, bits, pad )
 
    local chunks = divide_string( bitString, bits )
    local result = {}
-   for _,value in ipairs( chunks ) do
-      if ( #value < bits ) then
+   for _, value in ipairs( chunks ) do
+      if  #value < bits then
          value = value .. string.rep( '0', bits - #value )
       end
       local pos = tonumber( value, 2 ) + 1
@@ -163,8 +163,8 @@ end
 -- base64 decode and encode function
 --------------------------------------------------------------------------------
 
-local base64Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"..
-                       "abcdefghijklmnopqrstuvwxyz"..
+local base64Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" ..
+                       "abcdefghijklmnopqrstuvwxyz" ..
                        "0123456789+/"
 local base64PadMap = { "", "==", "=" }
  
@@ -181,8 +181,8 @@ end
 -- URL safe base64 decode and encode function
 --------------------------------------------------------------------------------
 
-local url64Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"..
-                      "abcdefghijklmnopqrstuvwxyz"..
+local url64Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" ..
+                      "abcdefghijklmnopqrstuvwxyz" ..
                       "0123456789-_"
  
 function basexx.from_url64( str, ignore )
