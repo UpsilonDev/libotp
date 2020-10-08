@@ -6,7 +6,7 @@ local lookup = {
   ["err"] = {},
   ["mode"] = {},
   ["headers"] = {},
-  ["yubicloud"] = {}
+  ["yubicloud"] = {},
 }
 
 -- YubiCloud endpoints
@@ -15,7 +15,7 @@ lookup.yubicloud = {
   "api2.yubico.com",
   "api3.yubico.com",
   "api4.yubico.com",
-  "api5.yubico.com"
+  "api5.yubico.com",
 }
 
 -- YubiCloud error messages
@@ -28,7 +28,7 @@ lookup.err.yubicloud = {
   ["OPERATION_NOT_ALLOWED"] = -25,
   ["BACKEND_ERROR"] = -26,
   ["NOT_ENOUGH_ANSWERS"] = -27,
-  ["REPLAYED_REQUEST"] = -28
+  ["REPLAYED_REQUEST"] = -28,
 }
 
 -- YubiOTP error messages
@@ -56,25 +56,25 @@ lookup.err.yubiotp = {
   [-26] = "YubiCloud: Backend error",
   [-27] = "YubiCloud: Not enough answers",
   [-28] = "YubiCloud: Replayed request",
-  [-30] = "Unknown YubiCloud error"
+  [-30] = "Unknown YubiCloud error",
 }
 
 -- Default hexamode bit for YubiOTP
 lookup.mode.yubiotp = {
-  false, -- Strict mode
-  false, -- Enhanced strict mode
-  true,  -- Check YubiCloud signature
-  true,  -- Sign validation request
-  true,  -- Check CRC in OTP
-  true,  -- Parallel HTTP requests
-  false, -- Reserved
-  false  -- Reserved
+  false,  -- Strict mode
+  false,  -- Enhanced strict mode
+  true,   -- Check YubiCloud signature
+  true,   -- Sign validation request
+  true,   -- Check CRC in OTP
+  true,   -- Parallel HTTP requests
+  false,  -- Reserved
+  false,  -- Reserved
 }
 
 -- HTTP headers for YubiCloud requests
 lookup.headers = {
   ["User-Agent"] = "libotp/1.0.0 (+https://git.io/JJem7)",
-  ["X-Clacks-Overhead"] = "GNU Terry Pratchett"
+  ["X-Clacks-Overhead"] = "GNU Terry Pratchett",
 }
 
 return lookup

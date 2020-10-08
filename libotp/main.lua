@@ -3,7 +3,7 @@
 -- https://github.com/UpsilonDev/libotp
 
 local libotp = {
-  ["err"] = {}
+  ["err"] = {},
 }
 
 libotp.VERSION = "1.0.0"
