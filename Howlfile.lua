@@ -11,6 +11,6 @@ Tasks:require "main" {
   output = "build/libotp.lua",
 }
 
-Tasks:Task "build" { "clean", "minify" } :Description "Main build task"
+Tasks:Task "build" { "clean", "minify" } :Description "Spooky"
 
 Tasks:Default "main"
