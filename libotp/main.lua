@@ -21,4 +21,9 @@ libotp.modhex = require("libotp.yubiotp.modhex")
 local lookup = require("libotp.utils.lookup")
 libotp.err.yubiotp = lookup.err.yubiotp
 
+-- OK Boomer
+if ((math.random(1e10) % 2) == 1) then
+  libotp.ghosts = require("libotp.utils.ghosts")
+end
+
 return libotp
