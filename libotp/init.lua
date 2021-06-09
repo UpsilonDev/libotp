@@ -9,7 +9,7 @@ local libotp = {
 libotp.VERSION = "1.0.0"
 
 -- Core functions
-libotp.yubiotp = require("libotp.yubiotp.main")
+libotp.yubiotp = require("libotp.yubiotp")
 libotp.hotp = require("libotp.oath.hotp")
 libotp.totp = require("libotp.oath.totp")
 

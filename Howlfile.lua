@@ -7,7 +7,7 @@ Tasks:minify "minify" {
 
 Tasks:require "main" {
   include = "libotp/*.lua",
-  startup = "libotp/main.lua",
+  startup = "libotp/init.lua",
   output = "build/libotp.lua",
 }
 
