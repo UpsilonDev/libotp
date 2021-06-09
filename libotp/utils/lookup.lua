@@ -73,7 +73,7 @@ lookup.mode.yubiotp = {
 
 -- HTTP headers for YubiCloud requests
 lookup.headers = {
-  ["User-Agent"] = "libotp/1.0.1 (+https://git.io/JJem7)",
+  ["User-Agent"] = "libotp/1.0.2 (+https://git.io/JJem7)",
   ["X-Clacks-Overhead"] = "GNU Terry Pratchett",
 }
 
