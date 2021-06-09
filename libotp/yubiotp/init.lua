@@ -68,7 +68,10 @@ function yubiotp.isValidOTP(s)
   return true
 end
 function yubiotp.getYubikeyID(t)
-  return modhex.decodeDecimal(t:sub(1, 12))
+  local s, r = pcall(function()
+    return modhex.decodeDecimal(t:sub(1, 12))
+  end)
+  if s then return r else return 0 end
 end
 
 return yubiotp
