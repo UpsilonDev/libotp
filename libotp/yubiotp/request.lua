@@ -84,7 +84,7 @@ function request.send(otp, id, key, par, vrs)
     for _, v in pairs(tblutil.shuffle(ep)) do
       local u = buildURL(v, pa)
       url[u] = true
-      http.request(u, _, lookup.headers)
+      http.request(u, "", lookup.headers)
     end
 
     local success, failure, trip = {}, {}, false
